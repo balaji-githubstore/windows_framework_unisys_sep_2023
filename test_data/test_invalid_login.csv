@@ -1,0 +1,3 @@
+username;password;expected_error
+saul@gmail.com;king123;Incorrect email or password
+king@gmail.com;king123;Incorrect email or password
