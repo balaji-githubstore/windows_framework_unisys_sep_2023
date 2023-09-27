@@ -7,7 +7,7 @@ from appium.options.windows import WindowsOptions
 from appium.webdriver.common.appiumby import AppiumBy
 from assertpy import assert_that
 
-from base.asppium_wrapper import AutomationWrapper
+from base.appium_wrapper import AutomationWrapper
 from pages.home_page import HomePage
 from pages.sign_in_page import SignInPage
 from utilities.data_source import DataSource
