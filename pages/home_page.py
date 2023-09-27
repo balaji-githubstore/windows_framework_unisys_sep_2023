@@ -2,18 +2,20 @@ import time
 
 from appium.webdriver.common.appiumby import AppiumBy
 
+from base.windows_keywords import WindowsKeywords
 
-class HomePage:
+
+class HomePage(WindowsKeywords):
 
     def __init__(self,driver):
+        super().__init__(driver)
         self.driver=driver
 
     def click_on_sign_in(self):
-        time.sleep(3)
-        self.driver.find_element(AppiumBy.NAME, 'Sign In').click()
+        super().wait_and_click((AppiumBy.NAME, 'Sign In'))
 
     def click_on_sign_up(self):
-        self.driver.find_element(AppiumBy.NAME, 'Sign Up').click()
+        super().wait_and_click((AppiumBy.NAME, 'Sign Up'))
 
     def click_on_join_meeting(self):
-        self.driver.find_element(AppiumBy.NAME, 'Join a Meeting').click()
+        super().wait_and_click((AppiumBy.NAME, 'Join a Meeting'))

@@ -41,4 +41,6 @@ class TestLogin(AutomationWrapper):
         sign_in_page.enter_password(password)
         sign_in_page.click_on_login()
 
+        #assert the dashboard page any content
+
 
