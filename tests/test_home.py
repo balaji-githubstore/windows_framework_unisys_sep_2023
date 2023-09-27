@@ -6,5 +6,8 @@ from base.appium_wrapper import AutomationWrapper
 
 
 class TestHomeScreenUI(AutomationWrapper):
+
+    @pytest.mark.ui
+    @pytest.mark.smoke
     def test_validate_version(self):
         assert_that(self.driver.page_source).contains("5.16.1")
