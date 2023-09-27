@@ -14,7 +14,6 @@ from utilities.data_source import DataSource
 
 
 class TestLogin(AutomationWrapper):
-
     @pytest.mark.parametrize("username,password,expected_error",
                              DataSource.test_invalid_login_csv)
     def test_invalid_login(self,username,password,expected_error):

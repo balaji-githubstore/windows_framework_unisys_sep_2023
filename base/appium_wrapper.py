@@ -8,7 +8,7 @@ class AutomationWrapper:
     def setup(self):
         option = WindowsOptions()
         option.app = r'C:\Users\Balaji_Dinakaran\AppData\Roaming\Zoom\bin\Zoom.exe'
-        self.driver = webdriver.Remote(command_executor='http://localhost:4723/wd/hub', options=option)
+        self.driver = webdriver.Remote(command_executor='http://localhost:7878/wd/hub', options=option)
         self.driver.implicitly_wait(20)
         yield
         self.driver.quit()
