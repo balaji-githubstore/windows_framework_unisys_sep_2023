@@ -8,6 +8,8 @@ from appium.webdriver.common.appiumby import AppiumBy
 from assertpy import assert_that
 
 from base.appium_wrapper import AutomationWrapper
+from pages.home_page import HomePage
+from pages.sign_in_page import SignInPage
 from utilities.data_source import DataSource
 
 
@@ -16,21 +18,27 @@ class TestLogin(AutomationWrapper):
     @pytest.mark.parametrize("username,password,expected_error",
                              DataSource.test_invalid_login_csv)
     def test_invalid_login(self,username,password,expected_error):
-        time.sleep(3)
-        self.driver.find_element(AppiumBy.NAME, 'Sign In').click()
-        self.driver.find_element(AppiumBy.XPATH, "//Edit[@Name='Enter your email']").send_keys(username)
-        self.driver.find_element(AppiumBy.XPATH, "//Edit[@Name='Enter your password']").click()
-        self.driver.find_element(AppiumBy.XPATH, "//Edit[@Name='Enter your password']").send_keys(password)
-        self.driver.find_element(AppiumBy.XPATH, '//Button[@Name="Sign In"]').click()
-        time.sleep(10)
-        actual_error = (self.driver.find_element(AppiumBy.XPATH, "//*[contains(@Name,'Incorrect')]")
-                        .get_attribute("Name"))
+
+        home_page=HomePage(self.driver)
+        home_page.click_on_sign_in()
+
+        sign_in_page=SignInPage(self.driver)
+        sign_in_page.enter_username(username)
+        sign_in_page.enter_password(password)
+        sign_in_page.click_on_login()
+
+        actual_error = sign_in_page.get_error_message()
         assert_that(actual_error).is_equal_to(expected_error)
 
     @pytest.mark.parametrize("username,password,expected_value",
                              DataSource.test_valid_login_excel)
     def test_valid_login(self,username,password,expected_value):
-        self.driver.find_element(AppiumBy.NAME, 'Sign In').click()
-        print(username)
-        print(password)
+        home_page = HomePage(self.driver)
+        home_page.click_on_sign_in()
+
+        sign_in_page = SignInPage(self.driver)
+        sign_in_page.enter_username(username)
+        sign_in_page.enter_password(password)
+        sign_in_page.click_on_login()
+
 
